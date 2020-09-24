@@ -5,14 +5,14 @@ Data Manipulation
 library(tidyverse)
 ```
 
-    ## ── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
+    ## ── Attaching packages ───────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
 
     ## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
     ## ✓ tibble  3.0.3     ✓ dplyr   1.0.2
     ## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
     ## ✓ readr   1.3.1     ✓ forcats 0.5.0
 
-    ## ── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
@@ -494,4 +494,116 @@ litters_df =
     ##   `Pups born alive` = col_double(),
     ##   `Pups dead @ birth` = col_double(),
     ##   `Pups survive` = col_double()
+    ## )
+
+## Learning Assessment \#1 - select
+
+``` r
+pups_df = 
+  read_csv("./data/FAS_pups.csv") %>%
+  janitor::clean_names() %>% 
+  select(litter_number, sex, pd_ears)
+```
+
+    ## Parsed with column specification:
+    ## cols(
+    ##   `Litter Number` = col_character(),
+    ##   Sex = col_double(),
+    ##   `PD ears` = col_double(),
+    ##   `PD eyes` = col_double(),
+    ##   `PD pivot` = col_double(),
+    ##   `PD walk` = col_double()
+    ## )
+
+## Learning Assessment \#2 - filter
+
+``` r
+pups_df =
+  read_csv("./data/FAS_pups.csv") %>%
+  janitor::clean_names() %>% 
+  filter(sex == 1)
+```
+
+    ## Parsed with column specification:
+    ## cols(
+    ##   `Litter Number` = col_character(),
+    ##   Sex = col_double(),
+    ##   `PD ears` = col_double(),
+    ##   `PD eyes` = col_double(),
+    ##   `PD pivot` = col_double(),
+    ##   `PD walk` = col_double()
+    ## )
+
+``` r
+pups_df =
+  read_csv("./data/FAS_pups.csv") %>%
+  janitor::clean_names() %>% 
+  filter(pd_walk < 11, sex == 2)
+```
+
+    ## Parsed with column specification:
+    ## cols(
+    ##   `Litter Number` = col_character(),
+    ##   Sex = col_double(),
+    ##   `PD ears` = col_double(),
+    ##   `PD eyes` = col_double(),
+    ##   `PD pivot` = col_double(),
+    ##   `PD walk` = col_double()
+    ## )
+
+## Learning Assessment \#3 - mutate
+
+``` r
+pups_df =
+  read_csv("./data/FAS_pups.csv") %>%
+  janitor::clean_names() %>% 
+  mutate(pd_pivot_7 = pd_pivot - 7)
+```
+
+    ## Parsed with column specification:
+    ## cols(
+    ##   `Litter Number` = col_character(),
+    ##   Sex = col_double(),
+    ##   `PD ears` = col_double(),
+    ##   `PD eyes` = col_double(),
+    ##   `PD pivot` = col_double(),
+    ##   `PD walk` = col_double()
+    ## )
+
+``` r
+pups_df =
+  read_csv("./data/FAS_pups.csv") %>%
+  janitor::clean_names() %>% 
+  mutate(pd_sum = pd_ears + pd_eyes + pd_pivot + pd_walk)
+```
+
+    ## Parsed with column specification:
+    ## cols(
+    ##   `Litter Number` = col_character(),
+    ##   Sex = col_double(),
+    ##   `PD ears` = col_double(),
+    ##   `PD eyes` = col_double(),
+    ##   `PD pivot` = col_double(),
+    ##   `PD walk` = col_double()
+    ## )
+
+## Learning Assessment \#4 - %\>%
+
+``` r
+pups_df =
+  read_csv("./data/FAS_pups.csv") %>%
+  janitor::clean_names() %>% 
+  filter(sex == 1) %>% 
+  select(-pd_ears) %>% 
+  mutate(pd_pivot_7 = pd_pivot >= 7)
+```
+
+    ## Parsed with column specification:
+    ## cols(
+    ##   `Litter Number` = col_character(),
+    ##   Sex = col_double(),
+    ##   `PD ears` = col_double(),
+    ##   `PD eyes` = col_double(),
+    ##   `PD pivot` = col_double(),
+    ##   `PD walk` = col_double()
     ## )

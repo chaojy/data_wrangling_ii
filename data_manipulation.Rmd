@@ -124,5 +124,55 @@ litters_df =
   drop_na(gd0_weight)
 ```
 
+## Learning Assessment #1 - select
 
+```{r}
+pups_df = 
+  read_csv("./data/FAS_pups.csv") %>%
+  janitor::clean_names() %>% 
+  select(litter_number, sex, pd_ears)
+```
+
+## Learning Assessment #2 - filter
+
+```{r}
+pups_df =
+  read_csv("./data/FAS_pups.csv") %>%
+  janitor::clean_names() %>% 
+  filter(sex == 1)
+```
+
+```{r}
+pups_df =
+  read_csv("./data/FAS_pups.csv") %>%
+  janitor::clean_names() %>% 
+  filter(pd_walk < 11, sex == 2)
+```
+
+## Learning Assessment #3 - mutate
+
+```{r}
+pups_df =
+  read_csv("./data/FAS_pups.csv") %>%
+  janitor::clean_names() %>% 
+  mutate(pd_pivot_7 = pd_pivot - 7)
+```
+
+```{r}
+pups_df =
+  read_csv("./data/FAS_pups.csv") %>%
+  janitor::clean_names() %>% 
+  mutate(pd_sum = pd_ears + pd_eyes + pd_pivot + pd_walk)
+```
+
+## Learning Assessment #4 - %>% 
+
+```{r}
+pups_df =
+  read_csv("./data/FAS_pups.csv") %>%
+  janitor::clean_names() %>% 
+  filter(sex == 1) %>% 
+  select(-pd_ears) %>% 
+  mutate(pd_pivot_7 = pd_pivot >= 7)
+```
 
