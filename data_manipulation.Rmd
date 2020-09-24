@@ -50,3 +50,36 @@ select(litters_df, litter_number, everything())
 relocate(litters_df, litter_number)
 ```
 
+## `filter`
+
+```{r}
+filter(litters_df, gd0_weight < 22)
+```
+
+```{r}
+filter(litters_df, gd0_weight >= 22)
+```
+
+```{r}
+filter(litters_df, gd_of_birth == 20)
+```
+
+```{r}
+filter(litters_df, !(gd_of_birth == 20))
+filter(litters_df, gd_of_birth != 20)
+```
+
+```{r}
+filter(litters_df, gd0_weight >= 22, gd_of_birth == 20)
+```
+
+```{r}
+filter(litters_df, group == "Con7")
+```
+
+```{r}
+filter(litters_df, group %in% c("Con7", "Mod8"))
+## filter rows that have either group Con7 or Mod 8
+## challenging part of filter is knowing what to write down in order to keep the data you want and have logical commands to get what you want.
+```
+
