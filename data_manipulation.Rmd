@@ -83,3 +83,15 @@ filter(litters_df, group %in% c("Con7", "Mod8"))
 ## challenging part of filter is knowing what to write down in order to keep the data you want and have logical commands to get what you want.
 ```
 
+## `mutate`
+
+```{r}
+mutate(litters_df, wt_gain = gd18_weight - gd0_weight)
+```
+
+```{r}
+mutate(litters_df, 
+  wt_gain = gd18_weight - gd0_weight,
+  group = str_to_lower(group))
+```
+
