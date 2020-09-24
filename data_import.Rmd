@@ -33,7 +33,11 @@ tail(litters_df)
 skimr::skim(litters_df)
 ```
 
-```{r}
+## Options to read_csv
 
+check out `?read_csv()` for more information.  Can manipulate column names, missing data, and other values in csv dataset
+
+```{r}
+litters_df = read.csv("./data/FAS_litters.csv")
 ```
 
